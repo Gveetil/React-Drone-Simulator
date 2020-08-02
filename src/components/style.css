@@ -1,0 +1,45 @@
+/* styles used by the layout grid component */
+
+.table-header{
+  background-color: grey;
+  width: 20px;
+ height: 20px;
+}
+
+.drone-tile{
+  background-image: url(/images/drone.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  
+}
+
+.grid-tile{
+  background-color: gainsboro;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0.3rem;
+  margin: 1px;
+  border-radius: 0.2rem;
+}
+
+.header-tile{
+  width: 1.5rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0.3rem;
+  margin: 1px;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.scroll-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}

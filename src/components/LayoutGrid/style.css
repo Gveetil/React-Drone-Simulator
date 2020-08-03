@@ -1,7 +1,7 @@
 /* styles used by the layout grid component */
 
 .drone-tile{
-  background-image: url(/images/drone.png);
+  background-image: url("../../images/drone.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

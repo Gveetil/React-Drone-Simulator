@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderTile from "./HeaderTile";
 import Tile from "./Tile";
-import { useAppContext } from "../utils/AppContext";
+import { useAppContext } from "../../utils/AppContext";
 
 // This component generates a grid data row
 export default function GridRow(props) {

@@ -3,6 +3,7 @@ import React, { useReducer, useContext } from "react";
 // Enum of Action keys supported by this context  
 const AppContextAction = {
     MOVE_DRONE: "MOVE_DRONE",       // Move the drone to a new position
+    CLICK_POSITION: "CLICK_POSITION",   // Click a photo at the current drone position
 }
 
 const AppContext = React.createContext();
@@ -11,7 +12,8 @@ const defaultState = {
     rangeX: [-10, 10],
     rangeY: [-10, 10],
     dronePosition: { x: 0, y: 0 },
-    positionsClicked: [],
+    positionsClicked: {},
+    newPositionClicked: false,
 };
 
 // Reducer to make changes to the application context state
@@ -50,9 +52,23 @@ const reducer = (state, action) => {
             }
             return {
                 ...state,
+                newPositionClicked: false,
                 rangeX,
                 rangeY,
                 dronePosition: { x, y },
+            };
+        }
+        case AppContextAction.CLICK_POSITION: {
+            const newPosition = `X${state.dronePosition.x}Y${state.dronePosition.y}`;
+            let clickCount = state.positionsClicked[newPosition] || 0;
+            clickCount++;
+            return {
+                ...state,
+                newPositionClicked: true,
+                positionsClicked: {
+                    ...state.positionsClicked,
+                    [newPosition]: clickCount,
+                },
             };
         }
         default:

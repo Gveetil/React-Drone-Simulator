@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import GridRow from "./GridRow";
 import HeaderTile from "./HeaderTile";
-import { AppContextAction, useAppContext } from "../utils/AppContext";
+import { AppContextAction, useAppContext } from "../../utils/AppContext";
 import "./style.css";
 
 // This component generates the layout grid for the drone to move on
@@ -40,6 +40,11 @@ export default function LayoutGrid() {
                 dispatch({
                     type: AppContextAction.MOVE_DRONE,
                     move: "v",
+                });
+                break;
+            case " ":
+                dispatch({
+                    type: AppContextAction.CLICK_POSITION,
                 });
                 break;
             default:

@@ -82,7 +82,7 @@ export default function LayoutGrid() {
 
     return (
         <div className="scroll-wrapper">
-            <div className="d-flex flex-column flex-nowrap overflow-auto p-4 m-3 mx-auto">
+            <div className="d-flex flex-column flex-nowrap overflow-auto p-2 my-3 mx-auto">
                 {renderRows(state.rangeY)}
                 <div className="d-flex flex-row flex-nowrap justify-content-center">
                     <HeaderTile headerId={`XY`} headerName="" />

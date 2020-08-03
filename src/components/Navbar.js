@@ -15,7 +15,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav className="navbar sticky-top navbar-dark bg-primary" >
+        <nav className="navbar fixed-top navbar-dark bg-primary" >
             <a className="navbar-brand" href="/">Drone Simulator</a>
             <form className="form-inline ml-auto">
                 <div className="input-group my-2 my-md-0">

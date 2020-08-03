@@ -18,9 +18,13 @@ export default function LayoutGrid() {
     // on update, scroll the drone into view 
     useEffect(() => {
         const droneTile = document.querySelector(".drone-tile");
-        if (droneTile)
-            droneTile.scrollIntoViewIfNeeded({ behavior: "smooth", block: "start" });
-
+        if (droneTile) {
+            // Not supported in all browsers, so check and use
+            if (droneTile.scrollIntoViewIfNeeded)
+                droneTile.scrollIntoViewIfNeeded({ behavior: "smooth", block: "start" });
+            else
+                droneTile.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     });
 

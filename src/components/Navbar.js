@@ -16,7 +16,7 @@ export default function Navbar() {
 
     return (
         <nav className="navbar fixed-top navbar-dark bg-primary" >
-            <a className="navbar-brand" href="/">Drone Simulator</a>
+            <a className="navbar-brand" href="/React-Drone-Simulator">Drone Simulator</a>
             <form className="form-inline ml-auto">
                 <div className="input-group my-2 my-md-0">
                     <label className="text-white pr-2 form-control-sm" htmlFor="drone-instructions">Drone Input</label>

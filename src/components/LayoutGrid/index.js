@@ -19,7 +19,7 @@ export default function LayoutGrid() {
     useEffect(() => {
         const droneTile = document.querySelector(".drone-tile");
         if (droneTile)
-            droneTile.scrollIntoView({ behavior: "smooth", block: "end" });
+            droneTile.scrollIntoViewIfNeeded({ behavior: "smooth", block: "start" });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     });
@@ -75,7 +75,8 @@ export default function LayoutGrid() {
     function renderRows([rowStart, rowEnd]) {
         const rows = [];
         for (let i = rowStart; i <= rowEnd; i++) {
-            rows.push(<GridRow key={`Y${i}`} rowId={i} />);
+            const rowId = `Y${i}`;
+            rows.push(<GridRow key={rowId} rowId={rowId} yPos={i} />);
         }
         return rows;
     }

@@ -1,29 +1,19 @@
 import React from "react";
-import { useAppContext } from "../../utils/AppContext";
 
 // This component generates a grid tile 
 export default function Tile(props) {
-    /* eslint-disable no-unused-vars */
-    const [state, _] = useAppContext();
 
-    const currPos = `X${props.tileId}Y${props.rowId}`;
-    const clickCount = state.positionsClicked[currPos] || 0;
+    let tileClassName = (props.clickCount) ? "clicked-tile" : "grid-tile";
 
-    let tileClassName = "grid-tile";
-
-    if (clickCount > 0)
-        tileClassName = " clicked-tile";
-
-    if (props.tileId === state.dronePosition.x
-        && props.rowId === state.dronePosition.y) {
+    if (props.showDrone)
         tileClassName += " drone-tile";
-        if (state.newPositionClicked)
-            tileClassName += " highlight-tile";
-    }
+
+    if (props.showHighlight)
+        tileClassName += " highlight-tile";
 
     return (
-        <div key={`Y${props.rowId}X${props.tileId}`}
+        <div key={props.tileId}
             className={tileClassName}>
-            {clickCount ? clickCount : ""}
+            {props.clickCount ? props.clickCount : ""}
         </ div>)
 }

@@ -9,18 +9,23 @@ export default function GridRow(props) {
     const [state, _] = useAppContext();
 
     // This function renders tiles for this row
-    function renderTiles([rangeStart, rangeEnd], rowId) {
+    function renderTiles([rangeStart, rangeEnd], rowId, yPos) {
         const tiles = [];
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            tiles.push(<Tile key={`X${i}Y${rowId}`} rowId={rowId} tileId={i} />);
+            const currPos = `X${i}${rowId}`;
+            const clickCount = state.positionsClicked[currPos] || 0;
+            const showDrone = (yPos === state.dronePosition.y && i === state.dronePosition.x);
+            tiles.push(<Tile key={currPos} tileId={currPos}
+                showHighlight={showDrone && state.newPositionClicked}
+                showDrone={showDrone} clickCount={clickCount} />);
         }
         return tiles;
     }
 
     return (
         <div className="d-flex flex-row flex-nowrap justify-content-center">
-            <HeaderTile key={`Y${props.rowId}`} headerId={`Y${props.rowId}`} headerName={props.rowId} />
-            {renderTiles(state.rangeX, props.rowId)}
+            <HeaderTile key={props.rowId} headerId={props.rowId} headerName={props.yPos} />
+            {renderTiles(state.rangeX, props.rowId, props.yPos)}
         </div>
     );
 }

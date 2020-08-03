@@ -15,8 +15,18 @@ export default function LayoutGrid() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // on update, scroll the drone into view 
+    useEffect(() => {
+        const droneTile = document.querySelector(".drone-tile");
+        if (droneTile)
+            droneTile.scrollIntoView({ behavior: "smooth", block: "end" });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    });
+
     // Function handles the key down event 
     function handleKeyDown(event) {
+        event.preventDefault();
         switch (event.key) {
             case "ArrowLeft":
                 dispatch({
@@ -56,7 +66,7 @@ export default function LayoutGrid() {
     function renderHeaderRow([colStart, colEnd]) {
         const headerRow = [];
         for (let i = colStart; i <= colEnd; i++) {
-            headerRow.push(<HeaderTile headerId={`X${i}`} headerName={i} />);
+            headerRow.push(<HeaderTile key={`X${i}`} headerId={`X${i}`} headerName={i} />);
         }
         return headerRow;
     }
@@ -65,7 +75,7 @@ export default function LayoutGrid() {
     function renderRows([rowStart, rowEnd]) {
         const rows = [];
         for (let i = rowStart; i <= rowEnd; i++) {
-            rows.push(<GridRow rowId={i} />);
+            rows.push(<GridRow key={`Y${i}`} rowId={i} />);
         }
         return rows;
     }

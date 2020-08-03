@@ -3,6 +3,7 @@ import { useAppContext } from "../../utils/AppContext";
 
 // This component generates a grid tile 
 export default function Tile(props) {
+    /* eslint-disable no-unused-vars */
     const [state, _] = useAppContext();
 
     const currPos = `X${props.tileId}Y${props.rowId}`;

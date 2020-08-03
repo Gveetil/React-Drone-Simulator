@@ -14,6 +14,8 @@ const defaultState = {
     dronePosition: { x: 0, y: 0 },
     positionsClicked: {},
     newPositionClicked: false,
+    totalClicked: 0,
+    droneInstructions: "",
 };
 
 // Reducer to make changes to the application context state
@@ -50,8 +52,10 @@ const reducer = (state, action) => {
             } else if (y > state.rangeY[1]) {
                 rangeY[1] = y;
             }
+            const droneInstructions = state.droneInstructions + action.move;
             return {
                 ...state,
+                droneInstructions,
                 newPositionClicked: false,
                 rangeX,
                 rangeY,
@@ -62,8 +66,11 @@ const reducer = (state, action) => {
             const newPosition = `X${state.dronePosition.x}Y${state.dronePosition.y}`;
             let clickCount = state.positionsClicked[newPosition] || 0;
             clickCount++;
+            const droneInstructions = state.droneInstructions + "x";
             return {
                 ...state,
+                droneInstructions,
+                totalClicked: state.totalClicked + 1,
                 newPositionClicked: true,
                 positionsClicked: {
                     ...state.positionsClicked,

@@ -1,11 +1,5 @@
 /* styles used by the layout grid component */
 
-.table-header{
-  background-color: grey;
-  width: 20px;
- height: 20px;
-}
-
 .drone-tile{
   background-image: url(/images/drone.png);
   background-repeat: no-repeat;

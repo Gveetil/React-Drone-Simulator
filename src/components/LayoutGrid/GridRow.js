@@ -12,14 +12,14 @@ export default function GridRow(props) {
     function renderTiles([rangeStart, rangeEnd], rowId) {
         const tiles = [];
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            tiles.push(<Tile rowId={rowId} tileId={i} />);
+            tiles.push(<Tile key={`X${i}Y${rowId}`} rowId={rowId} tileId={i} />);
         }
         return tiles;
     }
 
     return (
         <div className="d-flex flex-row flex-nowrap justify-content-center">
-            <HeaderTile headerId={`Y${props.rowId}`} headerName={props.rowId} />
+            <HeaderTile key={`Y${props.rowId}`} headerId={`Y${props.rowId}`} headerName={props.rowId} />
             {renderTiles(state.rangeX, props.rowId)}
         </div>
     );

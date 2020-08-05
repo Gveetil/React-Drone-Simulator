@@ -1,1 +1,19 @@
+.modal-dialog{
+    padding-top: 3rem;
+    height: 100%;
+}
 
+.scroll-wrapper {
+  padding-top: 3rem;
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+/* scale margins for smaller viewports*/
+@media (max-width: 800px) {
+    .modal-dialog,
+    .scroll-wrapper {
+        padding-top: 14rem;
+    }
+  }

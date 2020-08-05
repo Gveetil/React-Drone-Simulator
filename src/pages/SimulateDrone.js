@@ -1,0 +1,137 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAppContext } from "../utils/AppContext";
+import sampleDroneInput from "../data/droneInput.json";
+
+// Values allowed in drone input field
+/* eslint-disable-next-line no-useless-escape */
+const allowedInputValues = new RegExp(/^[x<>v\^]*$/g);
+
+// This component renders the simulate drone page
+export default function SimulateDrone(props) {
+    /* eslint-disable no-unused-vars */
+    const [state, _] = useAppContext();
+    const defaultState = {
+        speed: 2,
+        instructions: "",
+        error: false,
+    };
+    const [formState, setFormState] = useState(defaultState);
+
+    // Start drone simulation
+    const handleExecute = (event) => {
+        // Ensure intructions are specified
+        if (!formState.instructions) {
+            event.preventDefault();
+            setFormState({ ...formState, error: "Please enter instructions for the drone to execute!" });
+            return;
+        }
+        props.startSimulation(formState.speed, formState.instructions);
+    }
+
+    // load sample drone input 
+    function loadSampleInput() {
+        if (sampleDroneInput && sampleDroneInput.data) {
+            const sampleData = sampleDroneInput.data.toLowerCase();
+            // Ensure data in in the right format
+            if (sampleData.match(allowedInputValues)) {
+                setFormState({ ...formState, instructions: sampleData });
+                return;
+            }
+        }
+        setFormState({ ...formState, error: "Unable to load sample data!" });
+    }
+
+    // Disable user input on load of this page
+    useEffect(() => {
+        props.enableUserInput(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Validate and update form data on change
+    function handleInputChange(event) {
+        const name = event.target.name;
+        let value = event.target.value;
+        if (name === "instructions") {
+            value = value.toLowerCase();
+            if (!value.match(allowedInputValues))
+                return;
+        }
+        if (formState.error) {
+            // Clear errors if any
+            setFormState({
+                ...formState,
+                error: false,
+                [name]: value
+            });
+            return;
+        }
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    }
+
+    function handleFormClear() {
+        setFormState(defaultState);
+    }
+
+    return (
+        <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="simulateModalLabel">Drone Simulator</h5>
+                </div>
+                <div className="modal-body">
+                    <form>
+                        <label htmlFor="drone-speed" className="col-form-label">Speed: {formState.speed} </label>
+                        <div>
+                            <input type="range" className="w-25"
+                                id="drone-speed"
+                                name="speed"
+                                onChange={handleInputChange}
+                                min="1" max="3"
+                                value={formState.speed}></input>
+                        </div>
+                        <div className="form-group clearfix mb-0">
+                            <div className="py-1">
+                                <label htmlFor="drone-instructions" className="col-form-label">Enter Instructions for the Drone to execute:</label>
+                                <div className="float-right">
+                                    <label className="col-form-label pr-2" htmlFor="load-instructions">Load sample</label>
+                                    <button className="btn btn-primary btn-sm"
+                                        type="button"
+                                        onClick={loadSampleInput}
+                                        id="load-instructions">
+                                        <i className="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea className="form-control"
+                                spellCheck="false"
+                                name="instructions" rows="5"
+                                onChange={handleInputChange}
+                                id="drone-instructions"
+                                aria-describedby="instructionHelp"
+                                value={formState.instructions}>
+                            </textarea>
+                            <small id="instructionHelp" className="form-text text-muted">
+                                Allowed Input Values: &lt; &gt; ^ v and x
+                            </small>
+                        </div>
+                        {formState.error && <div className="alert alert-warning mt-2 mb-0" role="alert">
+                            {formState.error}
+                        </div>}
+                    </form>
+                </div>
+                <div className="modal-footer">
+                    <Link to="/" className="btn btn-secondary" >Close</Link>
+                    <button type="button"
+                        onClick={handleFormClear}
+                        className="btn btn-secondary">Clear</button>
+                    <Link to="/" role="button"
+                        onClick={handleExecute}
+                        className="btn btn-primary" >Simulate</Link>
+                </div>
+            </div>
+        </div>);
+}

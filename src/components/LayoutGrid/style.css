@@ -46,10 +46,3 @@
   font-weight: bold;
   font-size: 0.7rem;
 }
-
-.scroll-wrapper {
-  padding-top: 3rem;
-  flex: 1;
-  display: flex;
-  height: 100%;
-}

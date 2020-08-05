@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/React-Drone-Simulator/static/css/main.ff03d7b7.chunk.css",
-    "main.js": "/React-Drone-Simulator/static/js/main.4ab35eec.chunk.js",
-    "main.js.map": "/React-Drone-Simulator/static/js/main.4ab35eec.chunk.js.map",
+    "main.js": "/React-Drone-Simulator/static/js/main.cd20ca40.chunk.js",
+    "main.js.map": "/React-Drone-Simulator/static/js/main.cd20ca40.chunk.js.map",
     "runtime-main.js": "/React-Drone-Simulator/static/js/runtime-main.d1d463d0.js",
     "runtime-main.js.map": "/React-Drone-Simulator/static/js/runtime-main.d1d463d0.js.map",
-    "static/js/2.6071ec92.chunk.js": "/React-Drone-Simulator/static/js/2.6071ec92.chunk.js",
-    "static/js/2.6071ec92.chunk.js.map": "/React-Drone-Simulator/static/js/2.6071ec92.chunk.js.map",
+    "static/js/2.18f3dc0d.chunk.js": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js",
+    "static/js/2.18f3dc0d.chunk.js.map": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js.map",
     "index.html": "/React-Drone-Simulator/index.html",
-    "precache-manifest.6cd34bcc79a77a167b2b220f0455686f.js": "/React-Drone-Simulator/precache-manifest.6cd34bcc79a77a167b2b220f0455686f.js",
+    "precache-manifest.478c9c37092b07df96a3a598fcbdc375.js": "/React-Drone-Simulator/precache-manifest.478c9c37092b07df96a3a598fcbdc375.js",
     "service-worker.js": "/React-Drone-Simulator/service-worker.js",
     "static/css/main.ff03d7b7.chunk.css.map": "/React-Drone-Simulator/static/css/main.ff03d7b7.chunk.css.map",
-    "static/js/2.6071ec92.chunk.js.LICENSE.txt": "/React-Drone-Simulator/static/js/2.6071ec92.chunk.js.LICENSE.txt"
+    "static/js/2.18f3dc0d.chunk.js.LICENSE.txt": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d1d463d0.js",
-    "static/js/2.6071ec92.chunk.js",
+    "static/js/2.18f3dc0d.chunk.js",
     "static/css/main.ff03d7b7.chunk.css",
-    "static/js/main.4ab35eec.chunk.js"
+    "static/js/main.cd20ca40.chunk.js"
   ]
 }

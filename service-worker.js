@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/React-Drone-Simulator/precache-manifest.6cd34bcc79a77a167b2b220f0455686f.js"
+  "/React-Drone-Simulator/precache-manifest.478c9c37092b07df96a3a598fcbdc375.js"
 );
 
 self.addEventListener('message', (event) => {

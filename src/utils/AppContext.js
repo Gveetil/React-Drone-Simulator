@@ -4,6 +4,8 @@ import React, { useReducer, useContext } from "react";
 const AppContextAction = {
     MOVE_DRONE: "MOVE_DRONE",       // Move the drone to a new position
     CLICK_POSITION: "CLICK_POSITION",   // Click a photo at the current drone position
+    RESET_DRONE_LAYOUT: "RESET_DRONE_LAYOUT",  // Reset drone position and layout data
+    SHOW_SUCCESS_TOAST: "SHOW_SUCCESS_TOAST",  // Update the success toast message / status
 }
 
 const AppContext = React.createContext();
@@ -15,7 +17,17 @@ const defaultState = {
     positionsClicked: {},
     newPositionClicked: false,
     totalClicked: 0,
+    successToast: false,
     droneInstructions: "",
+    clone: function () {
+        return {
+            ...this,
+            rangeX: [...this.rangeX],
+            rangeY: [...this.rangeY],
+            dronePosition: { ...this.dronePosition },
+            positionsClicked: { ...this.positionsClicked },
+        };
+    }
 };
 
 // Reducer to make changes to the application context state
@@ -78,6 +90,15 @@ const reducer = (state, action) => {
                 },
             };
         }
+        case AppContextAction.RESET_DRONE_LAYOUT: {
+            return defaultState.clone();
+        }
+        case AppContextAction.SHOW_SUCCESS_TOAST: {
+            return {
+                ...state,
+                successToast: action.value,
+            };
+        }
         default:
             return state;
     }
@@ -85,7 +106,7 @@ const reducer = (state, action) => {
 
 // Returns the Provider to be used when using the application context 
 const AppProvider = ({ value = [], ...props }) => {
-    const [state, dispatch] = useReducer(reducer, defaultState);
+    const [state, dispatch] = useReducer(reducer, defaultState.clone());
     return <Provider value={[state, dispatch]} {...props} />;
 };
 

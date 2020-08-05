@@ -7,6 +7,9 @@ import sampleDroneInput from "../data/droneInput.json";
 /* eslint-disable-next-line no-useless-escape */
 const allowedInputValues = new RegExp(/^[x<>v\^]*$/g);
 
+// The Speed Levels supported
+const speedDisplay = ["Slow", "Medium", "Fast"];
+
 // This component renders the simulate drone page
 export default function SimulateDrone(props) {
     /* eslint-disable no-unused-vars */
@@ -84,7 +87,9 @@ export default function SimulateDrone(props) {
                 </div>
                 <div className="modal-body">
                     <form>
-                        <label htmlFor="drone-speed" className="col-form-label">Speed: {formState.speed} </label>
+                        <label htmlFor="drone-speed" className="col-form-label">
+                            Speed: {speedDisplay[formState.speed - 1]}
+                        </label>
                         <div>
                             <input type="range" className="w-25"
                                 id="drone-speed"

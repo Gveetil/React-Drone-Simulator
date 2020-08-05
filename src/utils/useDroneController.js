@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { AppContextAction, useAppContext } from "./AppContext";
+import DroneSimulator from "./DroneSimulator";
 
+// Flag - allow key down events to be processed
 let allowKeyEvents = false;
-let previousKeyEventsSetting = false;
+let currentKeyEventsConfig = false;
 
 // This custom hook listens for keyboard events and if it is a 
 // valid drone command, performs the action
 export default function useDroneController() {
     /* eslint-disable no-unused-vars */
-    const [state, dispatch] = useAppContext();
-    const [isExecuting, setIsExecuting] = useState();
+    const [_, dispatch] = useAppContext();
+    const [isExecuting, setIsExecuting] = useState(false);
 
     // Add key down listener on load of component
     useEffect(() => {
@@ -63,22 +65,38 @@ export default function useDroneController() {
     function enableUserInput(value) {
         // Disable user input when drone simulation is executing
         if (isExecuting) {
-            previousKeyEventsSetting = value;
+            currentKeyEventsConfig = value;
             return;
         }
 
         allowKeyEvents = value;
     }
 
+    // Stops the Drone Simulation
     function stopSimulation() {
-        allowKeyEvents = previousKeyEventsSetting;
+        DroneSimulator.stop();
+        allowKeyEvents = currentKeyEventsConfig;
         setIsExecuting(false);
     }
 
+    // Starts the Drone Simulation
     function startSimulation(speed, droneInput) {
-        previousKeyEventsSetting = allowKeyEvents;
+        currentKeyEventsConfig = allowKeyEvents;
         allowKeyEvents = false;
         setIsExecuting(true);
+        dispatch({
+            type: AppContextAction.RESET_DRONE_LAYOUT,
+        });
+        DroneSimulator.start(speed, droneInput, dispatch, simulationCompleted);
+    }
+
+    // Callback function gets called when simulation is completed
+    function simulationCompleted() {
+        stopSimulation();
+        dispatch({
+            type: AppContextAction.SHOW_SUCCESS_TOAST,
+            value: "Simulation completed successfully!",
+        });
     }
 
     return {

@@ -1,18 +1,24 @@
 import React from "react";
 import copy from 'copy-to-clipboard';
 import { Link } from "react-router-dom";
-import { useAppContext } from "../utils/AppContext";
+import { AppContextAction, useAppContext } from "../utils/AppContext";
 
 // This component renders the top navigation bar
 export default function Navbar(props) {
     /* eslint-disable no-unused-vars */
-    const [state, _] = useAppContext();
+    const [state, dispatch] = useAppContext();
 
     // Copy drone instructions to clipboard 
     const handleCopyToClipboard = (event) => {
         const instructionsText = event.target.closest(".input-group").firstChild.nextSibling;
         if (instructionsText)
             copy(instructionsText.value);
+    }
+
+    const handleReset = (event) => {
+        dispatch({
+            type: AppContextAction.RESET_DRONE_LAYOUT,
+        });
     }
 
     return (
@@ -46,6 +52,13 @@ export default function Navbar(props) {
                         </button>
                     </div>
                 </div>
+                {(!props.isExecuting) &&
+                    <button type="button"
+                        className="btn btn-secondary btn-sm ml-2 my-2 my-md-0"
+                        onClick={handleReset}
+                        title="Reset">
+                        <i className="fa fa-undo" aria-hidden="true"></i>
+                    </button>}
                 {(props.isExecuting) &&
                     <button className="btn btn-secondary btn-sm ml-2 my-2 my-md-0"
                         onClick={() => props.stopSimulation()}

@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/React-Drone-Simulator/static/css/main.ff03d7b7.chunk.css",
-    "main.js": "/React-Drone-Simulator/static/js/main.cd20ca40.chunk.js",
-    "main.js.map": "/React-Drone-Simulator/static/js/main.cd20ca40.chunk.js.map",
+    "main.css": "/React-Drone-Simulator/static/css/main.a3a6ed3f.chunk.css",
+    "main.js": "/React-Drone-Simulator/static/js/main.e55def17.chunk.js",
+    "main.js.map": "/React-Drone-Simulator/static/js/main.e55def17.chunk.js.map",
     "runtime-main.js": "/React-Drone-Simulator/static/js/runtime-main.d1d463d0.js",
     "runtime-main.js.map": "/React-Drone-Simulator/static/js/runtime-main.d1d463d0.js.map",
-    "static/js/2.18f3dc0d.chunk.js": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js",
-    "static/js/2.18f3dc0d.chunk.js.map": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js.map",
+    "static/js/2.4a0a3942.chunk.js": "/React-Drone-Simulator/static/js/2.4a0a3942.chunk.js",
+    "static/js/2.4a0a3942.chunk.js.map": "/React-Drone-Simulator/static/js/2.4a0a3942.chunk.js.map",
     "index.html": "/React-Drone-Simulator/index.html",
-    "precache-manifest.478c9c37092b07df96a3a598fcbdc375.js": "/React-Drone-Simulator/precache-manifest.478c9c37092b07df96a3a598fcbdc375.js",
+    "precache-manifest.df54e0b9a1e6dcb98ec312597b3b6ab1.js": "/React-Drone-Simulator/precache-manifest.df54e0b9a1e6dcb98ec312597b3b6ab1.js",
     "service-worker.js": "/React-Drone-Simulator/service-worker.js",
-    "static/css/main.ff03d7b7.chunk.css.map": "/React-Drone-Simulator/static/css/main.ff03d7b7.chunk.css.map",
-    "static/js/2.18f3dc0d.chunk.js.LICENSE.txt": "/React-Drone-Simulator/static/js/2.18f3dc0d.chunk.js.LICENSE.txt"
+    "static/css/main.a3a6ed3f.chunk.css.map": "/React-Drone-Simulator/static/css/main.a3a6ed3f.chunk.css.map",
+    "static/js/2.4a0a3942.chunk.js.LICENSE.txt": "/React-Drone-Simulator/static/js/2.4a0a3942.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d1d463d0.js",
-    "static/js/2.18f3dc0d.chunk.js",
-    "static/css/main.ff03d7b7.chunk.css",
-    "static/js/main.cd20ca40.chunk.js"
+    "static/js/2.4a0a3942.chunk.js",
+    "static/css/main.a3a6ed3f.chunk.css",
+    "static/js/main.e55def17.chunk.js"
   ]
 }

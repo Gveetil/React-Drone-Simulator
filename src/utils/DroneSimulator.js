@@ -2,7 +2,7 @@ import { AppContextAction } from "./AppContext";
 
 /** The available duration between drone actions in milliseconds
  *  this is selected based on speed setting used */
-const droneSpeed = [350, 200, 50];
+const droneSpeed = [300, 150, 50];
 
 /** The milliseconds to wait before starting the simulation - important to ensure page loads first */
 const waitingTime = 700;
@@ -58,6 +58,15 @@ const DroneSimulator = {
             });
         }
     },
+    // Execute actions and get simulation result immediately
+    executeAllActions(droneInput, dispatch) {
+        this.dispatch = dispatch;
+        let droneActions = droneInput.split("");
+        droneActions.forEach(action => {
+            this.dispatchAction(action);
+        });
+        return true;
+    }
 }
 
 export default DroneSimulator;

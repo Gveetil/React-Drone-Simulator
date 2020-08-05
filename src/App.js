@@ -18,26 +18,28 @@ function App() {
       <Navbar
         isExecuting={droneController.isExecuting}
         stopSimulation={droneController.stopSimulation} />
-      <Switch>
-        <Route exact path="/simulate">
-          {droneController.isExecuting ?
-            <Redirect to="/" />
-            :
-            <SimulateDrone
-              enableUserInput={droneController.enableUserInput}
-              startSimulation={droneController.startSimulation} />}
-        </Route>
-        <Route exact path="/information">
-          {droneController.isExecuting ?
-            <Redirect to="/" />
-            :
-            <Information
-              enableUserInput={droneController.enableUserInput} />}
-        </Route>
-        <Route path="/">
-          <Homepage enableUserInput={droneController.enableUserInput} />
-        </Route>
-      </Switch>
+      <div className="page-navbar-offset">
+        <Switch>
+          <Route exact path="/simulate">
+            {droneController.isExecuting ?
+              <Redirect to="/" />
+              :
+              <SimulateDrone
+                enableUserInput={droneController.enableUserInput}
+                startSimulation={droneController.startSimulation} />}
+          </Route>
+          <Route exact path="/information">
+            {droneController.isExecuting ?
+              <Redirect to="/" />
+              :
+              <Information
+                enableUserInput={droneController.enableUserInput} />}
+          </Route>
+          <Route path="/">
+            <Homepage enableUserInput={droneController.enableUserInput} />
+          </Route>
+        </Switch>
+      </div>
       {state.successToast && <SuccessToast />}
     </HashRouter >
   );

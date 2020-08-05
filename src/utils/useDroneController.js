@@ -25,7 +25,6 @@ export default function useDroneController() {
         // Check if keyboard events are enabled for this page
         if (!allowKeyEvents)
             return;
-        event.preventDefault();
         switch (event.key) {
             case "ArrowLeft":
                 dispatch({
@@ -57,8 +56,9 @@ export default function useDroneController() {
                 });
                 break;
             default:
-                break;
+                return;
         }
+        event.preventDefault();
     }
 
     // Function enables / disables processing of user keydown events

@@ -23,16 +23,23 @@ export default function Navbar(props) {
 
     return (
         <nav className="navbar fixed-top navbar-dark bg-primary" >
-            <Link to="/" className="navbar-brand">Drone Simulator</Link>
+            <Link to="/" className="navbar-brand">
+                <i className="fa fa-crosshairs pr-3" aria-hidden="true"></i>
+                Drone Simulator</Link>
             <form className="form-inline ml-auto">
-                <Link to="/information" className="btn btn-primary btn-sm my-2 my-md-0"
+                {(!props.isExecuting) && <Link to="/information" className="btn btn-primary btn-sm my-2 my-md-0"
+                    title="Information"
                     role="button">
                     <i className="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-                </Link>
-                <button type="button" className="btn btn-primary btn-sm my-2 my-md-0">
+                </Link>}
+                <button type="button"
+                    title="Total targets photographed"
+                    className="btn btn-primary btn-sm my-2 my-md-0 disable-cursor">
                     Targets&nbsp;&nbsp;<span className="badge badge-light">{Object.keys(state.positionsClicked).length}</span>
                 </button>
-                <button type="button" className="btn btn-primary btn-sm my-2 my-md-0">
+                <button type="button"
+                    title="Total photographs taken"
+                    className="btn btn-primary btn-sm my-2 my-md-0 disable-cursor">
                     Total Clicks&nbsp;&nbsp;<span className="badge badge-light">{state.totalClicked}</span>
                 </button>
                 <div className="input-group my-2 my-md-0">
@@ -47,6 +54,7 @@ export default function Navbar(props) {
                         <button className="btn btn-secondary btn-sm"
                             type="button"
                             onClick={handleCopyToClipboard}
+                            title="Copy"
                             id="copy-instructions">
                             <i className="fa fa-clipboard" aria-hidden="true"></i>
                         </button>
@@ -56,6 +64,11 @@ export default function Navbar(props) {
                     <button type="button"
                         className="btn btn-secondary btn-sm ml-2 my-2 my-md-0"
                         onClick={handleReset}
+                        onKeyUp={(e) => {
+                            // Prevent space bar from triggering the reset button
+                            if (e.keyCode === 32)
+                                e.preventDefault()
+                        }}
                         title="Reset">
                         <i className="fa fa-undo" aria-hidden="true"></i>
                     </button>}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../utils/AppContext";
+import { AppContextAction, useAppContext } from "../utils/AppContext";
+import DroneSimulator from "../utils/DroneSimulator";
 import sampleDroneInput from "../data/droneInput.json";
 
 // Values allowed in drone input field
@@ -13,11 +14,11 @@ const speedDisplay = ["Slow", "Medium", "Fast"];
 // This component renders the simulate drone page
 export default function SimulateDrone(props) {
     /* eslint-disable no-unused-vars */
-    const [state, _] = useAppContext();
+    const [_, dispatch] = useAppContext();
     const defaultState = {
         speed: 2,
         instructions: "",
-        error: false,
+        error: false
     };
     const [formState, setFormState] = useState(defaultState);
 
@@ -30,6 +31,20 @@ export default function SimulateDrone(props) {
             return;
         }
         props.startSimulation(formState.speed, formState.instructions);
+    }
+
+    // Show result of simulation
+    function handleShowResult(event) {
+        // Ensure intructions are specified
+        if (!formState.instructions) {
+            event.preventDefault();
+            setFormState({ ...formState, error: "Please enter instructions for the drone to execute!" });
+            return;
+        }
+        dispatch({
+            type: AppContextAction.RESET_DRONE_LAYOUT,
+        });
+        DroneSimulator.executeAllActions(formState.instructions, dispatch);
     }
 
     // load sample drone input 
@@ -75,12 +90,13 @@ export default function SimulateDrone(props) {
         });
     }
 
+    // Clear form data
     function handleFormClear() {
         setFormState(defaultState);
     }
 
     return (
-        <div className="modal-dialog modal-lg" role="document">
+        <div className="modal-dialog modal-lg pt-3" role="document">
             <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title" id="simulateModalLabel">Drone Simulator</h5>
@@ -101,7 +117,7 @@ export default function SimulateDrone(props) {
                         <div className="form-group clearfix mb-0">
                             <div className="py-1">
                                 <label htmlFor="drone-instructions" className="col-form-label">Enter Instructions for the Drone to execute:</label>
-                                <div className="float-right">
+                                <div className="float-sm-right">
                                     <label className="col-form-label pr-2" htmlFor="load-instructions">Load sample</label>
                                     <button className="btn btn-primary btn-sm"
                                         type="button"
@@ -128,14 +144,17 @@ export default function SimulateDrone(props) {
                         </div>}
                     </form>
                 </div>
-                <div className="modal-footer">
-                    <Link to="/" className="btn btn-secondary" >Close</Link>
+                <div className="modal-footer flex-wrap">
+                    <Link to="/" className="btn btn-secondary my-1 my-sm-0" >Close</Link>
                     <button type="button"
                         onClick={handleFormClear}
-                        className="btn btn-secondary">Clear</button>
+                        className="btn btn-secondary my-1 my-sm-0">Clear</button>
+                    <Link to="/" role="button"
+                        onClick={handleShowResult}
+                        className="btn btn-primary my-1 my-sm-0" >Show Result</Link>
                     <Link to="/" role="button"
                         onClick={handleExecute}
-                        className="btn btn-primary" >Simulate</Link>
+                        className="btn btn-primary my-1 my-sm-0" >Simulate</Link>
                 </div>
             </div>
         </div>);

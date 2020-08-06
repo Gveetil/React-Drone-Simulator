@@ -41,7 +41,7 @@ export default function Information(props) {
                                 <li>Click <mark>Run Simulator</mark> to open the simulator page.</li>
                                 <li>Paste drone instructions generated into the text field and click <mark>Simulate</mark>.</li>
                                 <li>To stop the simulation mid-way, click the <mark>Stop Execution</mark> button on top.</li>
-                                <li>For a sample long running simulation - click on <mark>Load Sample</mark> in the simulator page. This will run for about 9 minutes in the <mark>Fast</mark>mode.</li>
+                                <li>For a sample long running simulation - click on <mark>Load Sample</mark> in the simulator page. This will run for about 8 minutes in the <mark>Fast</mark>mode.</li>
                                 <li>To skip to the simulation end result, click on <mark>Show Result</mark>.</li>
                             </ul>
                             <hr />

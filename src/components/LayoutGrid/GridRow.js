@@ -24,7 +24,7 @@ export default function GridRow(props) {
 
     return (
         <div className="d-flex flex-row flex-nowrap justify-content-center">
-            <HeaderTile key={props.rowId} headerId={props.rowId} headerName={props.yPos} />
+            <HeaderTile key={props.rowId} headerId={props.rowId} headerName={-1 * props.yPos} />
             {renderTiles(state.rangeX, props.rowId, props.yPos)}
         </div>
     );

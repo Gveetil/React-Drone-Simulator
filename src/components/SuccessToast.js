@@ -19,8 +19,8 @@ export default function SuccessToast() {
     return (
         <div className="shadow position-fixed bg-success rounded fixed-bottom w-25 m-4 p-2">
             <div className="toast fade show">
-                <div className="toast-header">
-                    <strong className="mr-auto"><i className="fa fa-check" aria-hidden="true"></i> {state.successToast}</strong>
+                <div className="toast-header text-white">
+                    <span className="mr-auto h6"><i className="fa fa-check pr-2" aria-hidden="true"></i> {state.successToast}</span>
                     <button type="button" className="ml-2 mb-1 close"
                         onClick={handleClose}
                         data-dismiss="toast">&times;</button>
